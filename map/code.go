@@ -22,4 +22,9 @@ func main() {
 
 	fmt.Println("List of all languages", languages)
 
+	// loops in golang
+	for k, v := range languages {
+		fmt.Printf("For key %v, value is %v\n", k, v)
+	}
+
 }
