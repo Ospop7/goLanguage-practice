@@ -16,4 +16,10 @@ func main() {
 	fmt.Println("List of all languages", languages)
 	fmt.Println("JS shorts for", languages["JS"])
 
+	// for deleting
+
+	delete(languages, "Go")
+
+	fmt.Println("List of all languages", languages)
+
 }
