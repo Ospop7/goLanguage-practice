@@ -15,7 +15,8 @@ type course struct {
 
 func main() {
 	fmt.Println("Welcome to JSON")
-	EncodeJson()
+	// EncodeJson()
+	DecodeJson()
 
 }
 
@@ -35,5 +36,44 @@ func EncodeJson() {
 		panic(err)
 	}
 	fmt.Printf("%s\n", finalJson)
+
+}
+
+// consume JSON data in golang
+func DecodeJson() {
+	jsonDataFromWeb := []byte(`
+	{
+		"coursename": "AngularJS Bootcamp",
+		"Price": 29,
+		"website": "LearnCodeOnline.in",
+		"tags": ["web-dev","js"]
+}
+ `)
+
+	var lcoCourses course
+
+	checkValid := json.Valid(jsonDataFromWeb)
+
+	if checkValid {
+		fmt.Println("valid JSON")
+		json.Unmarshal(jsonDataFromWeb, &lcoCourses)
+		fmt.Printf("%#v\n", lcoCourses)
+
+	} else {
+		fmt.Println("invalid JSON")
+
+	}
+
+	// some cases where you just want to add data to key value pair
+
+	var myOnlineData map[string]interface{}
+	json.Unmarshal(jsonDataFromWeb, &myOnlineData)
+
+	fmt.Printf("%#v\n", myOnlineData)
+
+	for k, v := range myOnlineData {
+
+		fmt.Printf("Key is %s and value isn %v\n", k, v)
+	}
 
 }
